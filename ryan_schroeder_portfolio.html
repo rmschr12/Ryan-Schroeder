@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryan Schroeder — Product Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a18;
+    --muted: #6b6b67;
+    --line: #e4e2db;
+    --accent: #2a5c8f;
+    --bg: #faf9f6;
+    --card: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5vw; background: rgba(250,249,246,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav-name { font-family: 'DM Serif Display', serif; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.875rem; font-weight: 400; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* SECTIONS */
+  section { padding: 6rem 5vw; max-width: 780px; margin: 0 auto; }
+
+  /* HERO */
+  #hero { padding-top: 9rem; padding-bottom: 5rem; }
+  .hero-label { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+  .hero-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--muted); }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1.5rem; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 520px; margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.7rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; text-decoration: none; border-radius: 3px; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--ink); color: #faf9f6; }
+  .btn-primary:hover { background: #333330; }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn-outline:hover { border-color: var(--ink); }
+  .hero-badge { margin-top: 3.5rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); background: var(--card); border: 1px solid var(--line); padding: 0.4rem 0.9rem; border-radius: 2px; }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #5cba8a; display: inline-block; }
+
+  /* DIVIDER */
+  .section-divider { border: none; border-top: 1px solid var(--line); max-width: 780px; margin: 0 auto; }
+
+  /* ABOUT */
+  .section-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 1.5rem; line-height: 1.2; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } .nav-links { gap: 1rem; } }
+  .about-body { color: var(--muted); font-weight: 300; }
+  .about-body p + p { margin-top: 1rem; }
+  .cert-block { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 1.25rem 1.5rem; }
+  .cert-block h3 { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .cert-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-check { color: var(--accent); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
+
+  /* CONTACT */
+  #contact { padding-bottom: 4rem; }
+  .contact-intro { color: var(--muted); font-weight: 300; max-width: 480px; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink); font-weight: 400; font-size: 1rem; transition: color 0.2s; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .contact-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .contact-link-icon { font-size: 0.85rem; color: var(--muted); width: 20px; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 1.5rem 5vw; max-width: 780px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-label { animation: fadeUp 0.5s ease both; }
+  h1 { animation: fadeUp 0.55s 0.08s ease both; }
+  .hero-sub { animation: fadeUp 0.55s 0.16s ease both; }
+  .hero-actions { animation: fadeUp 0.55s 0.24s ease both; }
+  .hero-badge { animation: fadeUp 0.55s 0.32s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Ryan Schroeder</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <p class="hero-label">Product Manager</p>
+  <h1>Building <em>products</em><br>people love to use.</h1>
+  <p class="hero-sub">Customer-focused PM with a track record of bringing clarity to complex problems and shipping products that matter.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn btn-primary">Get in touch →</a>
+    <a href="#about" class="btn btn-outline">Learn more</a>
+  </div>
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Open to new opportunities
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section id="about">
+  <p class="section-label">About</p>
+  <h2>The person behind the roadmap.</h2>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I'm a product manager focused on bridging the gap between user needs and business goals — translating ambiguity into clear, actionable direction for engineering and design teams.</p>
+      <p>My approach is grounded in listening first: to customers, to data, and to the people building the product. I believe the best roadmaps come from honest conversations, not guesswork.</p>
+      <p>Whether defining a new feature from scratch or untangling a complex backlog, I bring structure, empathy, and a bias toward shipping.</p>
+    </div>
+    <div>
+      <div class="cert-block">
+        <h3>Certifications</h3>
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span>Certified Scrum Product Owner (CSPO)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <h2>Let's work together.</h2>
+  <p class="contact-intro">Whether you're looking for a PM to lead a new initiative, a collaborator on a tough problem, or just want to connect — I'd love to hear from you.</p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/ryan-schroeder-84912750" target="_blank" class="contact-link">
+      <span class="contact-link-icon">in</span>
+      linkedin.com/in/ryan-schroeder-84912750
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Ryan Schroeder</span>
+  <span>Product Manager · Denver, CO</span>
+</footer>
+
+</body>
+</html>
